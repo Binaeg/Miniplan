@@ -1,6 +1,6 @@
-package Miniplan_2_0.Minis;
+package Miniplan.Minis;
 
-import Miniplan_2_0.POJO.*;
+import Miniplan.POJO.*;
 
 import java.io.IOException;
 import java.nio.file.*;

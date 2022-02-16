@@ -1,4 +1,4 @@
-package Miniplan_2_0.POJO;
+package Miniplan.POJO;
 
 import java.text.DateFormat;
 import java.text.ParseException;

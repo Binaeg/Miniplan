@@ -1,12 +1,6 @@
-package Miniplan_2_0.Miniplan;
+package Miniplan.Miniplan;
 
-import Miniplan_2_0.POJO.*;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 public class MiniplanTest {
     private Miniplan miniplan;

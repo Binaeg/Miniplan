@@ -1,11 +1,10 @@
-package Miniplan_2_0.Termine;
+package Miniplan.Termine;
 
-import Miniplan_2_0.POJO.Termin;
-import Miniplan_2_0.POJO.TerminBuilder;
-import Miniplan_2_0.POJO.Weekday;
+import Miniplan.POJO.Termin;
+import Miniplan.POJO.TerminBuilder;
+import Miniplan.POJO.Weekday;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -1,4 +1,4 @@
-package Miniplan_2_0.POJO;
+package Miniplan.POJO;
 
 public class TerminBuilder {
     private String date;

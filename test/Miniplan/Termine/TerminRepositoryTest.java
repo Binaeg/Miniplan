@@ -1,6 +1,6 @@
-package Miniplan_2_0.Termine;
+package Miniplan.Termine;
 
-import Miniplan_2_0.POJO.Termin;
+import Miniplan.POJO.Termin;
 import org.junit.Test;
 
 import java.util.List;

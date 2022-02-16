@@ -1,6 +1,6 @@
-package Miniplan_2_0.Minis;
+package Miniplan.Minis;
 
-import Miniplan_2_0.POJO.Mini;
+import Miniplan.POJO.Mini;
 
 import java.util.List;
 

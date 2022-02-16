@@ -1,11 +1,10 @@
-package Miniplan_2_0.Miniplan;
+package Miniplan.Miniplan;
 
-import Miniplan_2_0.Minis.*;
-import Miniplan_2_0.POJO.*;
-import Miniplan_2_0.Termine.*;
+import Miniplan.Minis.*;
+import Miniplan.POJO.*;
+import Miniplan.Termine.*;
 
 import java.util.*;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Miniplan {
