@@ -45,4 +45,8 @@ public class TerminRepository implements ITerminRepository{
             return null;
         }
     }
+
+    public static void setTerminePath(String s) {
+        TERMINE_PATH = s;
+    }
 }

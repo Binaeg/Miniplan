@@ -5,10 +5,10 @@ import org.junit.Before;
 public class MiniplanTest {
     private Miniplan miniplan;
 
-    @Before
-    public void createMiniplan() {
-        miniplan = new Miniplan();
-    }
+//    @Before
+//    public void createMiniplan() {
+//        miniplan = new Miniplan();
+//    }
 
 //    @Test
 //    public void getMiniTest() {

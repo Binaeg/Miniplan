@@ -92,4 +92,8 @@ public class MiniRepository implements IMiniRepository {
         }
         return weekdays;
     }
+
+    public static void setMinisPath(String s) {
+        MINIS_PATH = s;
+    }
 }

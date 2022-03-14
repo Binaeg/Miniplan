@@ -1,23 +1,90 @@
 package Miniplan.Miniplan;
 
+import Miniplan.GUI.GUI;
 import Miniplan.Minis.*;
 import Miniplan.POJO.*;
 import Miniplan.Termine.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Miniplan {
-    private final IMiniRepository miniRepository = new MiniRepository();
-    private final IMiniService miniService = new MiniService(miniRepository);
+    private IMiniRepository miniRepository;
+    private IMiniService miniService;
 
-    private final ITerminRepository terminRepository = new TerminRepository();
-    private final ITerminService terminService = new TerminService(terminRepository);
+    private ITerminRepository terminRepository;
+    private ITerminService terminService;
 
-    private List<Mini> minis = miniService.loadMinis();
-    private List<Termin> termine = terminService.loadTermine();
+    private List<Mini> minis;
+    private List<Termin> termine;
 
     private int maxDeployments = 0;
+
+    private GUI GUI;
+
+    public Miniplan(GUI GUI) {
+        this.GUI = GUI;
+    }
+
+    public void initMinis(boolean override) {
+        if (minis == null || override) {
+            try {
+                miniRepository = new MiniRepository();
+                miniService = new MiniService(miniRepository);
+                minis = miniService.loadMinis();
+                GUI.log("Minis erfolgreich geladen.");
+            } catch (Exception e) {
+                GUI.log("Fehler beim Minis laden: " + e.getMessage());
+            }
+        }
+    }
+
+    public void initTermine(boolean override) {
+        if (termine == null || override) {
+            try {
+                terminRepository = new TerminRepository();
+                terminService = new TerminService(terminRepository);
+                termine = terminService.loadTermine();
+                GUI.log("Termine erfolgreich geladen.");
+            } catch (Exception e) {
+                GUI.log("Fehler beim Termine laden: " + e.getMessage());
+            }
+        }
+    }
+
+    public void deployMinis() {
+        initMinis(false);
+        initTermine(false);
+        try {
+            getTermine()
+                    .stream()
+                    .sorted((o1, o2) -> {
+                        DateFormat sourceFormat = new SimpleDateFormat("dd.MM.yyyy");
+                        Calendar c1 = Calendar.getInstance();
+                        Calendar c2 = Calendar.getInstance();
+                        try {
+                            c1.setTime(sourceFormat.parse(o1.getDate()));
+                            c2.setTime(sourceFormat.parse(o2.getDate()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        return c1.compareTo(c2);
+                    })
+                    .forEach(termin -> {
+                        for (int i = 0; i < termin.getAmountOfMinis(); i++) {
+                            Mini miniToDeploy = getMiniToDeploy(termin, 2 - (i % 2));
+
+                            termin.getDeployedMinis().add(miniToDeploy);
+                            i = deployPartners(termin, i, miniToDeploy);
+                        }
+                    });
+        } catch (Exception e) {
+            GUI.log("Fehler beim einteilen der Minis: " + e.getMessage());
+        }
+    }
 
     public Mini getMiniToDeploy(Termin termin, int experience) throws NoSuchElementException {
         List<Mini> avaiableMinis = getAvailableMinis(termin.getWeekday(), experience);
@@ -60,13 +127,11 @@ public class Miniplan {
         return i;
     }
 
-    public List<Mini> getMinis() {
-        return minis;
-    }
-
     public List<Termin> getTermine() {
         return termine;
     }
 
-
+    public List<Mini> getMinis() {
+        return minis;
+    }
 }
