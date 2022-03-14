@@ -12,5 +12,4 @@ Jar Datei herunterladen
 https://github.com/Binaeg/Miniplan/tree/master/out/artifacts/Miniplan_jar
 
 ### 3. Starten
-Einfach die .jar Datei öffnen
-Beispieldateien für die Miniliste und Terminplan findest du oben
+Einfach die .jar Datei öffnen, Beispieldateien für die Miniliste und Terminplan findest du oben
